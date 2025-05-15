@@ -53,11 +53,20 @@ class ArucoDetectorNode(Node):
                 
                 distance = np.linalg.norm(tvecs[i][0])
                 cv2.putText(frame, f"id: {ids[i]}",
-                            (int(corners[i][0][0][0]), int(corners[i][0][0][1]) + 10),
+                            (int(corners[i][0][0][0]) - 40, int(corners[i][0][0][1]) + 20),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
-                cv2.putText(frame, f"Distance: {distance:.2f} cm",
-                            (int(corners[i][0][0][0]), int(corners[i][0][0][1]) - 10),
+                cv2.putText(frame, f"x: {tvecs[i][0][0]: .2f}",
+                            (int(corners[i][0][0][0]) - 40, int(corners[i][0][0][1]) + 40),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+                cv2.putText(frame, f"y: {tvecs[i][0][1]: .2f}",
+                            (int(corners[i][0][0][0]) - 40, int(corners[i][0][0][1]) + 60),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+                cv2.putText(frame, f"z: {tvecs[i][0][2]: .2f}",
+                            (int(corners[i][0][0][0]) - 40, int(corners[i][0][0][1]) + 80),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)  
+                # cv2.putText(frame, f"Distance: {distance:.2f} cm",
+                #             (int(corners[i][0][0][0]), int(corners[i][0][0][1]) - 10),
+                #             cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
         cv2.imshow("Aruco Detection", frame)
         cv2.waitKey(1)
